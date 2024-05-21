@@ -10,4 +10,5 @@ O curso aborda:
 - Adicionar Segurança na Aplicação com Spring Security
 - Implementar Autenticação utilizando Tokens JWT
 - Documentar API's REST utilizando o SWAGGER
+
   **Instrutor Dougllas Sousa.**
