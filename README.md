@@ -1,6 +1,7 @@
 # Curso Spring Boot 
 Curso da Udemy - Do Zero ao Expert em Spring Boot e todo o ecossistema Spring,
 guia completo e atualizado.
+
 O curso aborda:
 - Desenvolvimento de Aplicações Enterprise com Spring Boot
 - Conhecer e dominar os módulos do Spring Boot
@@ -10,4 +11,5 @@ O curso aborda:
 - Adicionar Segurança na Aplicação com Spring Security
 - Implementar Autenticação utilizando Tokens JWT
 - Documentar API's REST utilizando o SWAGGER
+
   **Instrutor Dougllas Sousa.**
