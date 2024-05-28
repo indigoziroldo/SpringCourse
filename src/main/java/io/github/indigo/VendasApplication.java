@@ -20,8 +20,20 @@ public class VendasApplication {
         return args -> {
             clientes.salvar(new Cliente("Douglas"));
             clientes.salvar(new Cliente("Outro cliente"));
+
             List<Cliente> todosClientes = clientes.obterTodos();
             todosClientes.forEach(System.out::println);
+
+            todosClientes.forEach(cliente -> {
+                cliente.setNome(cliente.getNome() + " atualizado");
+                clientes.atualizar(cliente);
+            });
+
+           // clientes.delete(1);
+
+            todosClientes = clientes.obterTodos();
+            todosClientes.forEach(System.out::println);
+
         };
     }
 
