@@ -1,10 +1,12 @@
 package io.github.indigo.domain.repository;
 
 import io.github.indigo.domain.entity.Cliente;
+import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,7 +15,7 @@ import java.util.List;
 @Repository
 public class Clientes {
 
-    private static String INSERT = "insert into cliente (nome) values (?)";
+   // private static String INSERT = "insert into cliente (nome) values (?)"; //used for jdbc
     private static String SELECT_ALL = "SELECT * FROM CLIENTE ";
 
     private static String UPDATE = "update cliente set nome = ? where id = ?";
@@ -24,8 +26,16 @@ public class Clientes {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    private EntityManager entityManager;
+
+
+
+    @Transactional //ocorre uma transação
     public Cliente salvar(Cliente cliente){
-            jdbcTemplate.update( INSERT, new Object[]{cliente.getNome()} );
+   //         jdbcTemplate.update( INSERT, new Object[]{cliente.getNome()} ); // JDBC
+            entityManager.persist(cliente); //persistence with jpa
             return cliente;
     }
 
