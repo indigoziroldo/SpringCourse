@@ -14,7 +14,7 @@ import java.util.List;
 public class Clientes {
 
     private static String INSERT = "insert into cliente (nome) values (?)";
-    private static String SELECT_ALL = "SELECT * FROM CLIENTE";
+    private static String SELECT_ALL = "SELECT * FROM CLIENTE ";
 
     private static String UPDATE = "update cliente set nome = ? where id = ?";
 
