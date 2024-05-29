@@ -1,5 +1,9 @@
 package io.github.indigo.domain.entity;
 
+import jakarta.persistence.*;
+
+@Entity
+//@Table(name = "Cliente")
 public class Cliente {
 
     public Cliente() {
@@ -14,7 +18,12 @@ public class Cliente {
         this.nome = nome;
     }
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    //@Column (name = "id")
     private Integer id;
+
+    @Column(name = "nome", length = 100)
     private String nome;
 
     public Integer getId() {
