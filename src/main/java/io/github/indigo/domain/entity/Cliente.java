@@ -2,11 +2,32 @@ package io.github.indigo.domain.entity;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 //@Table(name = "Cliente")
 public class Cliente {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    //@Column (name = "id")
+    private Integer id;
+
+    @Column(name = "nome", length = 100)
+    private String nome;
+
+    @OneToMany(mappedBy = "cliente")
+    private Set<Pedido> pedidos; // poderia ser usado qualquer um do Collections
+
     public Cliente() {
+    }
+
+    public Set<Pedido> getPedidos() {
+        return pedidos;
+    }
+
+    public void setPedidos(Set<Pedido> pedidos) {
+        this.pedidos = pedidos;
     }
 
     public Cliente(String nome) {
@@ -18,13 +39,6 @@ public class Cliente {
         this.nome = nome;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    //@Column (name = "id")
-    private Integer id;
-
-    @Column(name = "nome", length = 100)
-    private String nome;
 
     public Integer getId() {
         return id;
