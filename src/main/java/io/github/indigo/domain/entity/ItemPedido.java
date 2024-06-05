@@ -3,17 +3,21 @@ package io.github.indigo.domain.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "itemPedido")
+@Table(name = "item_pedido")
 public class ItemPedido {
     @Id
     @GeneratedValue
     @Column(name = "id")
     private Integer id;
-    @Column(name = "pedido")
+
+    @ManyToOne
+    @JoinColumn(name = "pedido_id")
     private Pedido pedido;
+    @ManyToOne
+    @JoinColumn(name = "produto_id")
     @Column(name = "produto")
     private Produto produto;
-    @Column(name = "quantidade")
+    @Column//(name = "quantidade")
     private Integer quantidade;
 
     public Integer getId() {
