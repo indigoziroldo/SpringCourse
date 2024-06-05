@@ -1,13 +1,17 @@
 package io.github.indigo;
 
 import io.github.indigo.domain.entity.Cliente;
+import io.github.indigo.domain.entity.Pedido;
 import io.github.indigo.domain.repository.ClienteRepository;
+import io.github.indigo.domain.repository.PedidoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 
 
@@ -15,14 +19,24 @@ import java.util.List;
 public class VendasApplication {
 
     @Bean
-    public CommandLineRunner init(@Autowired ClienteRepository clientes){
+    public CommandLineRunner init(
+            @Autowired ClienteRepository clientes,
+            @Autowired PedidoRepository pedidos){
         return args -> {
             System.out.println("Salvando clientes");
-            clientes.save(new Cliente("Douglas"));
-            clientes.save(new Cliente("Outro cliente"));
+            Cliente fulano = new Cliente("Fulano");
+            clientes.save(fulano);
 
-            List<Cliente> result = clientes.encontrarPorNome("Douglas");
-            result.forEach(System.out::println);
+            Pedido p = new Pedido();
+            p.setCliente(fulano);
+            p.setDataPedido(LocalDate.now());
+            p.setTotal(BigDecimal.valueOf(100));
+
+            pedidos.save(p);
+
+            Cliente cliente = clientes.findClienteFetchPedidos(fulano.getId());
+            System.out.println(cliente);
+            System.out.println(cliente.getPedidos());
 
 
         };
